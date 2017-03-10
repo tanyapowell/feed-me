@@ -1,9 +1,3 @@
-/**
- * {%=o.description%}
- *
- * @exports {%=o.exports%}
- * @extends {%=o.extends%}
- */
 {% if (o.extendpixi) { %}
 import {{%=o.extends%}} from 'pixi.js';
 {% } else { %}

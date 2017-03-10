@@ -4,21 +4,11 @@ import AnimationStore from '../stores/AnimationStore';
 
 let renderables = new Set();
 
-/**
- * GL Renderer with hooks into a Store
- *
- * Manages main animation loop
- *
- * @exports Renderer
- * @extends WebGLRenderer
- */
 export default class Renderer extends PIXI.WebGLRenderer {
 
   constructor(...args) {
 
     super(...args);
-
-    //this.resolution = window.devicePixelRatio;
 
     window.addEventListener('resize', this.resizeHandler.bind(this));
 
@@ -32,56 +22,33 @@ export default class Renderer extends PIXI.WebGLRenderer {
     this.resizeHandler();
   }
 
-  /**
-   * Set the stores width and height on resize
-   */
   setStore() {
     RendererStore.set('width', this.getWindowSize()[0]);
     RendererStore.set('height', this.getWindowSize()[1]);
   }
 
-  /**
-   * Sets's store and emits Change
-   * @return {null}
-   */
   resizeHandler() {
     this.resize(...this.getWindowSize());
     this.setStore();
     RendererStore.emitChange();
   }
 
-  /**
-   * Get the current window size
-   * @return {null}
-   */
   getWindowSize() {
-    var width = window.innerWidth;
-    var height = window.innerHeight;
+    let width = window.innerWidth;
+    let height = window.innerHeight;
 
     return [width, height];
   }
 
-  /**
-   * Start the animation loop
-   * @return {null}
-   */
   start() {
     this.active = true;
     window.requestAnimationFrame(this.animate.bind(this));
   }
 
-  /**
-   * Stop the animation loop
-   * @return {null}
-   */
   stop() {
     this.active = false;
   }
 
-  /**
-   * Main animation loop, updates animation store
-   * @return {null}
-   */
   animate() {
     this.renderRenderables();
 
@@ -91,20 +58,10 @@ export default class Renderer extends PIXI.WebGLRenderer {
     }
   }
 
-  /**
-   * Add a renderable object to the animation loop
-   * @param {renderable} renderable object
-   * @returns {renderable}
-   */
   addRenderable(renderable) {
     return renderables.add(renderable);
   }
 
-  /**
-   * Remove a renderable object from the animation loop
-   * @param {renderable} renderable object
-   * @returns {renderable}
-   */
   removeRenderable(renderable) {
     let hasRenderable = renderables.has(renderable);
 
@@ -115,10 +72,6 @@ export default class Renderer extends PIXI.WebGLRenderer {
     return hasRenderable;
   }
 
-  /**
-   * Loop over renderables and call the render function on them
-   * @return {null}
-   */
   renderRenderables() {
     for (let entry of renderables) {
       this.render(entry);

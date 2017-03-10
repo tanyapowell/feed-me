@@ -7,7 +7,7 @@ var entry = {
 };
 
 module.exports = {
-    context: path.join(__dirname, 'app'),
+    context: path.join(__dirname, 'src'),
     entry: entry,
     debug : DEBUG,
     target : 'web',

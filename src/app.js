@@ -1,11 +1,3 @@
-/**
- * App.js
- *
- * The main entry point, appends PIXI to the DOM
- * and starts a render and animation loop
- *
- */
-
 import './index.html';
 import {config} from '../package.json';
 import Renderer from './Renderer/Renderer';

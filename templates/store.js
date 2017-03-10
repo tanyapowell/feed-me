@@ -1,5 +1,5 @@
 import EventEmitter from 'events';
-import { * } from '../constants/AppConstants';
+import { * } from '../constants/GameConstants';
 
 class {%=o.exports%} extends EventEmitter {
 

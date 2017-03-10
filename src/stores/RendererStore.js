@@ -11,12 +11,16 @@ class RendererStore extends EventEmitter {
       height: 0,
       stageWidth: 0,
       stageHeight: 0,
-      stageCenter: {x: 0,y: 0},
+      stageCenter: {
+        x: 0,
+        y: 0
+      },
       resolution: 1
     };
   }
 
   get(key) {
+    console.log(key, this.data[key]);
     return this.data[key];
   }
 
