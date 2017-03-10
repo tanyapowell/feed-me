@@ -1,28 +1,12 @@
 import PIXI from 'pixi.js';
 import RendererStore from '../../stores/RendererStore.js';
-import { RESIZE } from '../../constants/AppConstants.js';
+import { RESIZE } from '../../constants/GameConstants.js';
 
-// default target size
 let tw = 1920;
 let th = 1080;
 
-/**
- * ScaledContainer
- *
- * A DisplayObjectContainer which attempts to scale and best-fit into the
- * window size dispatched from the RendererStrore
- *
- * @extends Container
- * @exports ScaledContainer
- */
 export default class ScaledContainer extends PIXI.Container {
 
-  /**
-   * Set target size
-   * @param  {Number} target_w width
-   * @param  {number} target_h height
-   * @return {null}
-   */
   constructor(target_w,target_h) {
 
     super();
@@ -35,10 +19,6 @@ export default class ScaledContainer extends PIXI.Container {
     this.resizeHandler();
   }
 
-  /**
-   * Scales and positions Container to best-fit to farget dimensions
-   * @return {null}
-   */
   resizeHandler() {
     const rw = RendererStore.get('width');
     const rh = RendererStore.get('height');

@@ -1,17 +1,6 @@
 import EventEmitter from 'events';
-import { ANIMATE } from '../constants/AppConstants';
+import { ANIMATE } from '../constants/GameConstants';
 
-/**
- * Animation Store
- *
- * Manages a few aspects of the animation loop and provides callbacks
- * for things such as Tween.js
- *
- * @data
- * 	tick : number of times render has been called
- * 	startTime : float ms of animation time start
- * 	currentTime : current float ms
- */
 class AnimationStore extends EventEmitter {
 
   constructor(...args) {
