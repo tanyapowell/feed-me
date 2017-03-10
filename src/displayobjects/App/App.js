@@ -1,5 +1,5 @@
 import ScaledContainer from '../ScaledContainer/ScaledContainer.js';
-import Bunny from '../Bunny/Bunny.js';
+import Ladies from '../Ladies/Ladies.js';
 import Background from '../Background/Background.js';
 import RendererStore from '../../stores/RendererStore.js';
 
@@ -20,17 +20,12 @@ export default class App extends ScaledContainer {
     const cx = RendererStore.get('stageCenter').x;
     const cy = RendererStore.get('stageCenter').y;
 
-    // let group1 = new BunnyGroup();
-    let b1 = new Bunny();
+    let b1 = new Ladies();
 
     b1.position.x = cx;
     b1.position.y = cy;
 
-    // group1.position.x = cx;
-    // group1.position.y = cy + (RendererStore.get('stageHeight')*.25);
-
     this.addChild(b1);
-    // this.addChild(group1);
   }
 
 }
