@@ -14,12 +14,10 @@ class GameStore extends EventEmitter {
 
   get(key) {
     console.log(key, this.data[key]);
-    // debugger;
     return this.data[key];
   }
 
   set(key, value) {
-    debugger;
     return this.data[key] = value;
   }
 
