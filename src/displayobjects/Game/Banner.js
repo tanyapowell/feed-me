@@ -21,11 +21,11 @@ export default class Banner extends PIXI.Sprite {
 
     textContainer.beginFill(0x000000);
     textContainer.lineStyle(2, 0xFFFFFF);
-    textContainer.drawRect(positionX + 210, positionY, 410, 100);
+    textContainer.drawRect(positionX + 110, positionY, 635, 115);
     textContainer.alpha = .5;
 
-    text.position.x = positionX - -250;
-    text.position.y = positionY - -20;
+    text.position.x = positionX - -127;
+    text.position.y = positionY - -10;
     text.scale.x = 1.5;
     text.scale.y = 1.5;
 
