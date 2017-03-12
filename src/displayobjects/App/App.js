@@ -1,7 +1,6 @@
 import ScaledContainer from '../ScaledContainer/ScaledContainer';
 import Background from '../Background/Background';
 import Game from '../Game/Game';
-import GameStore from '../../stores/GameStore';
 
 export default class App extends ScaledContainer {
 
