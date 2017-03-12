@@ -11,7 +11,7 @@ export default class Banner extends PIXI.Sprite {
 
     const textContainer = new PIXI.Graphics();
 
-    const text = new PIXI.Text('Pick your winner', {
+    const text = new Text('Pick your winner', {
       fontFamily: 'Hevetica',
       fontSize: 96,
       fill: '#cc00ff',

@@ -30,6 +30,11 @@ export default class Button extends PIXI.Sprite {
     this.interactive = true;
   }
 
+  removeInteractivityToButtons() {
+    this.buttonMode = false;
+    this.interactive = false;
+  }
+
   addButtonEvents() {
       this
         .on('touchstart', this.onButtonDown)

@@ -32,6 +32,16 @@ class GameStore extends EventEmitter {
   addChangeListener(callback) {
     this.on(BET_MADE, callback, this.data);
   }
+
+  isWinner() {
+    let winner = false;
+    if (this.data.gameOutcome === this.data.gamePrediction) {
+      console.log(true);
+      winner = true;
+    }
+    return winner;
+  }
+
 }
 
 export default new GameStore();

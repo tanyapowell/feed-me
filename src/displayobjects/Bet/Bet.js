@@ -4,6 +4,8 @@ import { config } from '../../../package.json';
 import Banner from './Banner';
 import Button from '../../utils/button/Button';
 import GameStore from '../../stores/GameStore';
+import GameWin from '../Outcome/Win';
+import GameLoss from '../Outcome/Lose';
 import LEFTBUTTON from '../images/leftLady.png';
 import RIGHTBUTTON from '../images/rightLady.png';
 import LEFTBUTTONOVER from '../images/leftLadyOver.png';
@@ -27,6 +29,9 @@ export default class Bet extends PIXI.Sprite {
     const leftButton = new Button(leftButtonTexture);
     const rightButton = new Button(rightButtonTexture);
 
+    const gameWin = new GameWin();
+    const gameLoss = new GameLoss();
+
     const getReadyText = new PIXI.Text('', {
       fontWeight: 'bold',
       fontSize: 60,
@@ -34,7 +39,7 @@ export default class Bet extends PIXI.Sprite {
       fill: '#cc00ff',
       align: 'center',
       stroke: '#FFFFFF',
-      strokeThickness: 6
+      strokeThickness: 3
     })
 
     getReadyText.position.x = positionX - -250;
@@ -42,6 +47,8 @@ export default class Bet extends PIXI.Sprite {
     getReadyText.scale.x = 2;
     getReadyText.scale.y = 2;
 
+    gameWin.visible = false;
+    gameLoss.visible = false;
     getReadyText.visible = false;
 
     leftButton.set('texture', leftButtonTextureOver);
@@ -55,29 +62,15 @@ export default class Bet extends PIXI.Sprite {
     leftButton.addInteractivityToButtons();
     leftButton.addButtonEvents();
     leftButton.on('click', () => {
+      leftButton.removeInteractivityToButtons();  //remove before commiting
+      rightButton.removeInteractivityToButtons();  //remove before commiting
       GameStore.set('gamePrediction', true);
-      GameStore.get('gamePrediction');
       banner.visible = false;
       getReadyText.visible = true;
-
-      let counter = 3;
-      const ticker = PIXI.ticker.shared;
-      ticker.add( () => {
-        counter -= 0.01;
-
-        if (counter > 2) {
-          getReadyText.text = 'Let\'s\n';
-        }
-        else if (counter > 1) {
-          getReadyText.text = 'Let\'s\n Get\n';
-        }
-        else if (counter > 0) {
-          getReadyText.text = 'Let\'s\n Get \n READY\n';
-        }
-        else {
-          getReadyText.visible = false;
-        }
-      })
+      this.countdown(getReadyText);
+      setTimeout(() => {
+        this.gameOutcome(gameWin, gameLoss)
+      }, 6000);
     });
 
     rightButton.set('texture', rightButtonTextureOver);
@@ -91,33 +84,48 @@ export default class Bet extends PIXI.Sprite {
     rightButton.addInteractivityToButtons();
     rightButton.addButtonEvents();
     rightButton.on('click', () => {
+      leftButton.removeInteractivityToButtons();  //remove before commiting
+      rightButton.removeInteractivityToButtons();  //remove before commiting
       GameStore.set('gamePrediction', false);
-      GameStore.get('gamePrediction');
       banner.visible = false;
-
       getReadyText.visible = true;
+      this.countdown(getReadyText);
+      setTimeout(() => {
+        this.gameOutcome(gameWin, gameLoss)
+      }, 6000);
+    });
 
+
+    this.addChild(banner, leftButton, rightButton, getReadyText, gameWin, gameLoss);
+  }
+
+  countdown(countdownText) {
       let counter = 3;
       const ticker = PIXI.ticker.shared;
       ticker.add( () => {
         counter -= 0.01;
 
         if (counter > 2) {
-          getReadyText.text = 'Let\'s\n';
+          countdownText.text = 'Let\'s\n';
         }
         else if (counter > 1) {
-          getReadyText.text = 'Let\'s\n Get\n';
+          countdownText.text = 'Let\'s\n Get\n';
         }
         else if (counter > 0) {
-          getReadyText.text = 'Let\'s\n Get \n READY\n';
+          countdownText.text = 'Let\'s\n Get \n READY\n';
         }
         else {
-          getReadyText.visible = false;
+          countdownText.visible = false;
         }
       })
+    }
 
-    });
-
-    this.addChild(banner, leftButton, rightButton, getReadyText);
+  gameOutcome(win, loss) {
+    if (GameStore.isWinner() === true) {
+      win.visible = true;
+    }
+    else {
+      loss.visible = true;
+    }
   }
 }
