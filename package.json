@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "pixi.js": "^3.0.7",
+    "stats-js": "^1.0.0-alpha1",
     "tween.js": "^16.6.0"
   },
   "devDependencies": {
