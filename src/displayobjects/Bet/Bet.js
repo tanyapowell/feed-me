@@ -62,8 +62,8 @@ export default class Bet extends PIXI.Sprite {
     leftButton.addInteractivityToButtons();
     leftButton.addButtonEvents();
     leftButton.on('click', () => {
-      leftButton.removeInteractivityToButtons();  //remove before commiting
-      rightButton.removeInteractivityToButtons();  //remove before commiting
+      leftButton.removeInteractivityToButtons();
+      rightButton.removeInteractivityToButtons();
       GameStore.set('gamePrediction', true);
       banner.visible = false;
       getReadyText.visible = true;
@@ -84,8 +84,8 @@ export default class Bet extends PIXI.Sprite {
     rightButton.addInteractivityToButtons();
     rightButton.addButtonEvents();
     rightButton.on('click', () => {
-      leftButton.removeInteractivityToButtons();  //remove before commiting
-      rightButton.removeInteractivityToButtons();  //remove before commiting
+      leftButton.removeInteractivityToButtons();
+      rightButton.removeInteractivityToButtons();
       GameStore.set('gamePrediction', false);
       banner.visible = false;
       getReadyText.visible = true;
