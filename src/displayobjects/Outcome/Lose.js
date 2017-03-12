@@ -10,7 +10,7 @@ export default class LosingOutcome extends PIXI.Sprite {
     const positionY = config.stageHeight / 5;
 
     const text = new Text('Sorry\n Dude...\n You\'ve lost', {
-      fontFamily: 'Hevetica',
+      fontFamily: 'Helvetica',
       fontSize: 96,
       fill: '#cc00ff',
       align: 'center',
