@@ -13,7 +13,6 @@ class GameStore extends EventEmitter {
   }
 
   get(key) {
-    console.log(key, this.data[key]);
     return this.data[key];
   }
 
@@ -36,7 +35,6 @@ class GameStore extends EventEmitter {
   isWinner() {
     let winner = false;
     if (this.data.gameOutcome === this.data.gamePrediction) {
-      console.log(true);
       winner = true;
     }
     return winner;

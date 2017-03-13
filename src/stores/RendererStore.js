@@ -20,7 +20,6 @@ class RendererStore extends EventEmitter {
   }
 
   get(key) {
-    console.log(key, this.data[key]);
     return this.data[key];
   }
 
