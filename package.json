@@ -9,6 +9,7 @@
     "stageHeight": 1080
   },
   "scripts": {
+    "deploy": "gh-pages -d build",
     "prestart": "npm install",
     "start": "NODE_ENV=development webpack-dev-server --content-base ./build/ --hot --inline --host 0.0.0.0",
     "webpack": "webpack -p --config ./webpack.config.js",
@@ -31,6 +32,7 @@
     "brfs": "^1.4.3",
     "eslint": "^2.4.0",
     "file-loader": "^0.8.4",
+    "gh-pages": "^0.12.0",
     "html-loader": "^0.4.3",
     "json-loader": "^0.5.3",
     "reactman": "^3.2.0",
