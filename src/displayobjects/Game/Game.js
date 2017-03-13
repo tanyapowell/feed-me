@@ -51,7 +51,7 @@ export default class Bet extends PIXI.Sprite {
       fontFamily: 'Helvetica',
       fill: '#cc00ff',
       align: 'center',
-      stroke: '#FFFFFF',
+      stroke: '#000',
       strokeThickness: 3
     })
 
@@ -60,7 +60,7 @@ export default class Bet extends PIXI.Sprite {
     cake.scale.x = .4;
     cake.scale.y = .4;
 
-    getReadyText.position.x = positionX - -250;
+    getReadyText.position.x = positionX - -350;
     getReadyText.position.y = positionY - -20;
     getReadyText.scale.x = 2;
     getReadyText.scale.y = 2;
@@ -134,13 +134,13 @@ export default class Bet extends PIXI.Sprite {
         counter -= 0.01;
 
         if (counter > 2) {
-          countdownText.text = 'Let\'s\n';
+          countdownText.text = 'Ready\n';
         }
         else if (counter > 1) {
-          countdownText.text = 'Let\'s\n Get\n';
+          countdownText.text = 'Ready\nSet\n';
         }
         else if (counter > 0) {
-          countdownText.text = 'Let\'s\n Get \n READY\n';
+          countdownText.text = 'Ready\nSet\nGO!';
         }
         else {
           countdownText.visible = false;
