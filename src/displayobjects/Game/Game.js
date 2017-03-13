@@ -24,6 +24,9 @@ import RIGHT_LADY_FAT_2 from '../images/rightLady2.png';
 import RIGHT_LADY_FAT_3 from '../images/rightLady3.png';
 import RIGHT_LADY_FAT_4 from '../images/rightLady4.png';
 
+const leftButtonTexture = PIXI.Texture.fromImage(LEFT_BUTTON);
+const rightButtonTexture = PIXI.Texture.fromImage(RIGHT_BUTTON);
+
 export default class Bet extends PIXI.Sprite {
 
   constructor() {
@@ -33,8 +36,6 @@ export default class Bet extends PIXI.Sprite {
     const positionY = config.stageHeight / 5;
 
     const cakeTexture = PIXI.Texture.fromImage(CAKE_TEXTURE);
-    const leftButtonTexture = PIXI.Texture.fromImage(LEFT_BUTTON);
-    const rightButtonTexture = PIXI.Texture.fromImage(RIGHT_BUTTON);
     const leftButtonTextureOver = PIXI.Texture.fromImage(LEFT_BUTTON_OVER);
     const rightButtonTextureOver = PIXI.Texture.fromImage(RIGHT_BUTTON_OVER);
 
@@ -79,10 +80,7 @@ export default class Bet extends PIXI.Sprite {
     leftButton.addInteractivityToButtons();
     leftButton.addButtonEvents();
     leftButton.on('click', () => {
-      leftButton.texture = leftButtonTexture;
-      rightButton.texture = rightButtonTexture;
-      leftButton.removeInteractivityToButtons();
-      rightButton.removeInteractivityToButtons();
+      this.buttonUpdates(leftButton, rightButton);
       GameStore.set('gamePrediction', true);
       banner.visible = false;
       getReadyText.visible = true;
@@ -106,10 +104,7 @@ export default class Bet extends PIXI.Sprite {
     rightButton.addInteractivityToButtons();
     rightButton.addButtonEvents();
     rightButton.on('click', () => {
-      leftButton.texture = leftButtonTexture;
-      rightButton.texture = rightButtonTexture;
-      leftButton.removeInteractivityToButtons();
-      rightButton.removeInteractivityToButtons();
+      this.buttonUpdates(leftButton, rightButton);
       GameStore.set('gamePrediction', false);
       banner.visible = false;
       getReadyText.visible = true;
@@ -125,7 +120,12 @@ export default class Bet extends PIXI.Sprite {
     this.addChild(banner, cake, leftButton, rightButton, getReadyText, gameWin, gameLoss);
   }
 
-
+  buttonUpdates(buttonX, buttonY) {
+    buttonX.texture = leftButtonTexture;
+    buttonY.texture = rightButtonTexture;
+    buttonX.removeInteractivityToButtons();
+    buttonY.removeInteractivityToButtons();
+  }
 
   countdown(countdownText) {
       let counter = 3;
